@@ -1,0 +1,185 @@
+.astronaut-mascot {
+  --mascot-size: 320px;
+  display: inline-grid;
+  place-items: center;
+  width: var(--mascot-size);
+  max-width: 100%;
+  height: auto;
+  aspect-ratio: 1;
+  margin: 0;
+  isolation: isolate;
+}
+
+.astronaut-mascot svg {
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+}
+
+.astronaut-mascot .helmet {
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: mascot-float 4.8s ease-in-out infinite;
+}
+
+.astronaut-mascot .ambient-glow {
+  animation: mascot-glow 3.4s ease-in-out infinite;
+}
+
+.astronaut-mascot .mascot-shadow {
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: mascot-shadow 4.8s ease-in-out infinite;
+}
+
+.astronaut-mascot .face-neutral .eye {
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: mascot-blink 5.2s infinite;
+}
+
+.astronaut-mascot .thinking-orbit,
+.astronaut-mascot .generating-effects,
+.astronaut-mascot .success-effects,
+.astronaut-mascot .error-effects,
+.astronaut-mascot .face-success,
+.astronaut-mascot .face-error {
+  display: none;
+}
+
+.astronaut-mascot[data-state="thinking"] .thinking-orbit {
+  display: block;
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: mascot-orbit 3.1s linear infinite;
+}
+
+.astronaut-mascot[data-state="thinking"] .eye-left,
+.astronaut-mascot[data-state="thinking"] .eye-right {
+  transform: translate(7px, -7px);
+}
+
+.astronaut-mascot[data-state="thinking"] .visor {
+  animation: visor-thinking 2.2s ease-in-out infinite;
+}
+
+.astronaut-mascot[data-state="generating"] .generating-effects {
+  display: block;
+}
+
+.astronaut-mascot[data-state="generating"] .scanline {
+  animation: visor-scan 1.55s linear infinite;
+}
+
+.astronaut-mascot[data-state="generating"] .eye-left,
+.astronaut-mascot[data-state="generating"] .eye-right {
+  animation: eye-process 0.82s ease-in-out infinite alternate;
+}
+
+.astronaut-mascot[data-state="generating"] .ambient-glow {
+  animation: generating-glow 1.3s ease-in-out infinite;
+}
+
+.astronaut-mascot[data-state="success"] .face-neutral,
+.astronaut-mascot[data-state="success"] .face-error {
+  display: none;
+}
+
+.astronaut-mascot[data-state="success"] .face-success,
+.astronaut-mascot[data-state="success"] .success-effects {
+  display: block;
+}
+
+.astronaut-mascot[data-state="success"] .success-effects {
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: success-pop 0.9s ease-out both;
+}
+
+.astronaut-mascot[data-state="error"] .face-neutral,
+.astronaut-mascot[data-state="error"] .face-success {
+  display: none;
+}
+
+.astronaut-mascot[data-state="error"] .face-error,
+.astronaut-mascot[data-state="error"] .error-effects {
+  display: block;
+}
+
+.astronaut-mascot[data-state="error"] .helmet {
+  animation: mascot-error-shake 0.42s ease-in-out 2;
+}
+
+.astronaut-mascot[data-state="error"] .visor {
+  stroke: #ff4d7c;
+  animation: error-pulse 1.15s ease-in-out infinite;
+}
+
+@keyframes mascot-float {
+  0%, 100% { transform: translateY(0) rotate(-0.6deg); }
+  50% { transform: translateY(-9px) rotate(0.8deg); }
+}
+
+@keyframes mascot-shadow {
+  0%, 100% { transform: scaleX(1); opacity: 0.62; }
+  50% { transform: scaleX(0.86); opacity: 0.42; }
+}
+
+@keyframes mascot-glow {
+  0%, 100% { opacity: 0.22; }
+  50% { opacity: 0.45; }
+}
+
+@keyframes mascot-blink {
+  0%, 45%, 49%, 100% { transform: scaleY(1); }
+  47% { transform: scaleY(0.08); }
+}
+
+@keyframes mascot-orbit {
+  to { transform: rotate(360deg); }
+}
+
+@keyframes visor-thinking {
+  0%, 100% { filter: saturate(1); }
+  50% { filter: saturate(1.35) brightness(1.08); }
+}
+
+@keyframes visor-scan {
+  from { transform: translateY(0); opacity: 0; }
+  15%, 85% { opacity: 0.55; }
+  to { transform: translateY(150px); opacity: 0; }
+}
+
+@keyframes eye-process {
+  from { transform: scaleY(0.72); opacity: 0.78; }
+  to { transform: scaleY(1.08); opacity: 1; }
+}
+
+@keyframes generating-glow {
+  0%, 100% { opacity: 0.24; filter: hue-rotate(0deg); }
+  50% { opacity: 0.55; filter: hue-rotate(38deg); }
+}
+
+@keyframes success-pop {
+  0% { transform: scale(0.4) rotate(-18deg); opacity: 0; }
+  70% { transform: scale(1.1) rotate(3deg); opacity: 1; }
+  100% { transform: scale(1); opacity: 1; }
+}
+
+@keyframes mascot-error-shake {
+  0%, 100% { transform: translateX(0); }
+  25% { transform: translateX(-7px) rotate(-1.5deg); }
+  75% { transform: translateX(7px) rotate(1.5deg); }
+}
+
+@keyframes error-pulse {
+  0%, 100% { filter: drop-shadow(0 0 0 rgba(255, 77, 124, 0)); }
+  50% { filter: drop-shadow(0 0 10px rgba(255, 77, 124, 0.75)); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .astronaut-mascot * {
+    animation-duration: 1ms !important;
+    animation-iteration-count: 1 !important;
+  }
+}
