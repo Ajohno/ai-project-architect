@@ -56,6 +56,7 @@
 
 .astronaut-mascot[data-state="thinking"] .eye-left,
 .astronaut-mascot[data-state="thinking"] .eye-right {
+  animation: none;
   transform: translate(7px, -7px);
 }
 
