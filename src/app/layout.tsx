@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import "./globals.css";
+import "@/components/mascot/astronaut-mascot.css";
 
 export const metadata: Metadata = {
   title: "AI Project Architect",
