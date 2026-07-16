@@ -60,11 +60,9 @@ Add those only when saved projects and authentication are designed together with
 
 ## Deployment
 
-1. Create the public GitHub repository `Ajohno/ai-project-architect`.
-2. Push this source to the `main` branch.
-3. Import the repository into the Vercel team `ajohnos-projects` with project name `ai-project-architect`.
-4. Add the three environment variables to Vercel for Development, Preview, and Production.
-5. Deploy and verify `/api/health`.
+1. Connect this GitHub repository to the Vercel project `ai-project-architect`.
+2. Add the three environment variables to Vercel for Development, Preview, and Production.
+3. Deploy and verify `/api/health`.
 
 ## Provisioning report
 
@@ -73,14 +71,14 @@ Add those only when saved projects and authentication are designed together with
 | Supabase project | CONNECTED | `AI Project Architect`, `us-east-1` |
 | Database health function | CONNECTED | Migration applied and query verified |
 | Authentication | NOT_REQUIRED | Deferred until saved projects |
-| Groq | NOT_CONFIGURED | Add `GROQ_API_KEY` manually |
-| GitHub repository | MANUAL_ACTION_REQUIRED | Connector cannot create repositories |
-| Vercel project | MANUAL_ACTION_REQUIRED | Import GitHub repository after creation |
+| Groq | NOT_CONFIGURED | Add the private server key manually |
+| GitHub repository | CONNECTED | Public repository created and starter source pushed |
+| Vercel project | CONFIGURED | User reports project created; Git connection and environment verification remain |
 | CI | CONFIGURED | Lint, type-check, and build on pushes/PRs to `main` |
 
 ## Security notes
 
 - Never commit `.env.local`.
-- Never expose `GROQ_API_KEY` or an elevated Supabase key to browser code.
+- Never expose the Groq server key or an elevated Supabase key to browser code.
 - Public Supabase configuration is not authorization; use RLS before exposing application tables.
-- CI uses placeholders and does not receive production secrets.
+- CI uses placeholders and does not receive production secrets. Until `package-lock.json` exists, CI uses `npm install`; afterward it automatically uses `npm ci`.
