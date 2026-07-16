@@ -1,6 +1,7 @@
 "use client";
 
 import { FormEvent, useEffect, useState } from "react";
+import { MascotPlayground } from "@/components/mascot/MascotPlayground";
 
 type Status =
   | "NOT_REQUIRED"
@@ -122,14 +123,16 @@ export default function Home() {
               </span>
             </div>
             <div className="mt-6 space-y-3">
-              {Object.entries(health?.services ?? {
-                frontend: "CONNECTED",
-                vercel: "UNKNOWN",
-                supabase: "UNKNOWN",
-                database: "UNKNOWN",
-                authentication: "NOT_REQUIRED",
-                groq: "NOT_CONFIGURED",
-              }).map(([service, status]) => (
+              {Object.entries(
+                health?.services ?? {
+                  frontend: "CONNECTED",
+                  vercel: "UNKNOWN",
+                  supabase: "UNKNOWN",
+                  database: "UNKNOWN",
+                  authentication: "NOT_REQUIRED",
+                  groq: "NOT_CONFIGURED",
+                },
+              ).map(([service, status]) => (
                 <div
                   key={service}
                   className="flex items-center justify-between rounded-xl border border-white/10 bg-slate-900/70 px-4 py-3"
@@ -149,6 +152,8 @@ export default function Home() {
             </p>
           </aside>
         </section>
+
+        <MascotPlayground />
       </section>
     </main>
   );
